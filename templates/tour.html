@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block tour %}
+<main class="container">
+    <section class="mt-3 pb-5">
+      <h1 class="display-3 mt-4">{{ data.tours[id]['title'] }} {{ data.tours[id]['stars']|int*'★'}}</h1>
+      <!-- HERO -->
+      <p class="lead">{{ data.tours[id]['country'] }} {{ data.departures[data.tours[id]['departure']] }} {{ data.tours[id]['nights'] }} ночей</p>
+      <img src="{{ data.tours[id]['picture'] }}" class="w-75" alt="">
+      <p class="my-4 w-75">{{ data.tours[id]['description'] }}</p>
+      <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/travel-advice" class="btn btn-success btn-lg">Купить тур за {{ data.tours[id]['price'] }}₽</a>
+    </section>
+  </main>
+{% endblock%}

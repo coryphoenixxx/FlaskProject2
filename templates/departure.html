@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block departure %}
+    <main class="container mt-3">
+        <h1 class="display-5 mt-4">Летим из {{ data.departures[departure][3:] }}</h1>
+        <p class="mb-4">Найдено {{ info[0] }} туров, от {{ info[1] }} до {{ info[2] }} и от {{ info[3] }} ночей до {{ info[4] }} ночей</p>
+        <!-- CARDS -->
+        <div class="row mt-5">
+            {% for id in data.tours %}
+                {% if data.tours[id]['departure'] == departure %}
+                  <div class="col-4">
+                    <div class="card mb-4">
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <img class="card-img-top embed-responsive-item" src="{{ data.tours[id]['picture'] }}" />
+                      </div>
+                      <div class="card-body">
+                        <h2 class="h5 card-title">{{ data.tours[id]['country'] }}: {{ data.tours[id]['title'] }} </h2>
+                        <p class="card-text">{{ data.tours[id]['description']|truncate(100) }}</p>
+                          <p style="font-weight: bold">{{ data.tours[id]['date'] }}, {{ data.tours[id]['nights'] }} дней, {{ data.tours[id]['price'] }}₽ {{ data.tours[id]['stars']|int*'★'}}<p>
+                        <a href="/tours/{{ id }}/" class="btn btn-sm btn-primary">Подробнее</a>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock%}
